@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="532feadf-f6a5-4162-be63-9885111c3534" name="Default Changelist" comment="" />
+    <list default="true" id="532feadf-f6a5-4162-be63-9885111c3534" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +19,12 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Svs86ym9FYRQM9R6N2BPMYg31P" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -36,7 +43,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.PruebaDFS">
+    <configuration name="PruebaBFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ia_parcial.PruebaBFS" />
+      <module name="IA_Parcial" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ia_parcial.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PruebaCostoUniforme" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ia_parcial.PruebaCostoUniforme" />
       <module name="IA_Parcial" />
@@ -50,8 +70,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PruebaDFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ia_parcial.PruebaDFS" />
+      <module name="IA_Parcial" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ia_parcial.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PruebaDFS" />
+        <item itemvalue="Application.PruebaBFS" />
         <item itemvalue="Application.PruebaCostoUniforme" />
       </list>
     </recent_temporary>
@@ -68,10 +103,22 @@
       <updated>1572455241965</updated>
       <workItem from="1572455244566" duration="5896000" />
       <workItem from="1572467273882" duration="31000" />
+      <workItem from="1572467545045" duration="175000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
