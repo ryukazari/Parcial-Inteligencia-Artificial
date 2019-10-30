@@ -30,4 +30,15 @@ En base a este problema a acontinuación se proponen varias preguntas de búsque
 
 ## Pregunta 1
 
-¿Cuál serái el orden en el que salen los nodos de la cola en búsqueda primero en amplitud (BFS)? Implementación: La alternativa es una cola FIFO y los nuevos sucesores (en orden) se van al final de la cola. Muestre los 10 primeros nodos que salen de la cola.
+¿Cuál sería el orden en el que salen los nodos de la cola en búsqueda primero en amplitud (BFS)? Implementación: La alternativa es una cola FIFO y los nuevos sucesores (en orden) se van al final de la cola. Muestre los 10 primeros nodos que salen de la cola.
+
+
+## Pregunta 2
+
+¿Cuál sería el orden en el que salen los nodos de la cola en búsqueda primero en profundidad (DFS)? Implementación: La alternativa es una cola FIFO y los nuevos sucesores (en orden) se van al inicio de la cola. Muestre los 5 primeros nodos que salen de la cola.
+
+
+## Pregunta 3
+
+¿Cuál sería el orden en el que salen los nodos de la cola con la búsqueda de costo uniforme? Muestre los 5 primeros nodos que se expanden.
+
