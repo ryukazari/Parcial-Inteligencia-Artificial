@@ -1,3 +1,4 @@
+
 # MisionerosCanibales
 
 # Examen Parcial Inteligencia Artificial
@@ -15,9 +16,11 @@ La meta es la siguiente:
 > _ R A R A
 
 Dada la función heurística:
+
 $$
 H'(n)=p1+p2+p3+p4+p5+dv
 $$
+
 Donde `pi` vale 0 si la casilla i contiene la asignación correcta respecto al estado final y vale 1 en caso contrario y dv es la distancia del blanco respecto al blanco de la meta.
 Por ejemplo, h'(estado inicial) = 1+0+0+0+1+4=6
 En base a este problema a acontinuación se proponen varias preguntas de búsqueda. Para cada una de las preguntas de búsqueda considerar:
