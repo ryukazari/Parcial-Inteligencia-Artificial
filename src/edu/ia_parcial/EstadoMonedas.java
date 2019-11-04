@@ -52,28 +52,18 @@ public class EstadoMonedas implements Estado {
         return sucesores;
     }
 
-    @Override
-    public boolean esMeta() {
-        if (Arrays.equals(posicionActual, META)) return true;
-        return false;
-    }
-
 
     private void girar(ArrayList<Estado> s){
         char[] temp;
-        boolean flag = false;
-        for (int i=0; i<5; i++){
+        for (int i=0; i<CANTIDAD; i++){
             temp = copiarPosiciones(posicionActual);
             if(temp[i]=='R'){
                 temp[i]='A';
                 s.add(new EstadoMonedas(temp));
-                flag = true;
-            }
-            if(temp[i]=='A' && !flag){
+            }else if(temp[i]=='A'){
                 temp[i]='R';
                 s.add(new EstadoMonedas(temp));
             }
-            flag = false;
         }
     }
 
@@ -81,7 +71,7 @@ public class EstadoMonedas implements Estado {
         char[] tempIzq = copiarPosiciones(posicionActual);
         char[] tempDer = copiarPosiciones(posicionActual);
         int indice = -1;
-        for (int i=0; i<5; i++){
+        for (int i=0; i<CANTIDAD; i++){
             if(tempIzq[i] == '_') indice = i;
         }
         if(indice == 0){
@@ -140,19 +130,17 @@ public class EstadoMonedas implements Estado {
     }
 
 
-    public void setCosto(int costo) {
 
-        this.costo = costo;
+    @Override
+    public boolean esMeta() {
+        if (Arrays.equals(posicionActual, META)) return true;
+        return false;
     }
 
     @Override
     public void mostrarEstado(){
         System.out.println(posicionActual[0] + " | " + posicionActual[1]
                 + " | " + posicionActual[2] + " | " + posicionActual[3] + " | " + posicionActual[4]);
-    }
-
-    public char[] getPosicionActual(){
-        return posicionActual;
     }
 
     @Override
@@ -166,21 +154,26 @@ public class EstadoMonedas implements Estado {
 
     }
 
+    public char[] getPosicionActual(){
+        return posicionActual;
+    }
+
 
     public double costoCambioEstado(EstadoMonedas otro){
+        int tam = this.getPosicionActual().length;
         int blanco=0;
         int blanco2=0;
         boolean iguales = true;
 
-        for (int i=0; i<4; i++){
+        for (int i=0; i<tam && iguales; i++){
             if(posicionActual[i]=='_') blanco = i;
-            if(META[i]=='_') blanco2=i;
+            if(otro.posicionActual[i]=='_') blanco2=i;
             if(this.getPosicionActual()[i] != otro.getPosicionActual()[i]){
                 iguales = false;
             }
         }
-        if(Math.abs(blanco-blanco2) == 2) return 2;
-        else if (!iguales) return 1;
+        if(Math.abs(blanco-blanco2) == 2) return 2.0;
+        else if (!iguales) return 1.0;
         else return 0;
     }
 }

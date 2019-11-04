@@ -82,6 +82,8 @@ public class BusquedaAEstrella
                  */
                 for (int i = 0; i < sucesoresTemp.size(); i++)
                 {
+                    //sucesoresTemp.get(i).mostrarEstado();
+                    //System.out.println("Costo :"+(nodoTemp.getCosto()+((EstadoMonedas)nodoTemp.getEstadoActual()).costoCambioEstado((EstadoMonedas)sucesoresTemp.get(i))));
                     // el segundo parametro aquí agrega el costo del nuevo
                     // nodo al costo actual total en el NodoDeBusqueda
                     NodoDeBusquedaF nuevoNodo = new NodoDeBusquedaF(nodoTemp,

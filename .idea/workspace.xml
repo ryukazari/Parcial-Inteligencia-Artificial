@@ -4,6 +4,7 @@
     <list default="true" id="532feadf-f6a5-4162-be63-9885111c3534" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IA_Parcial/edu/ia_parcial/EstadoMonedas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IA_Parcial/edu/ia_parcial/EstadoMonedas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/edu/ia_parcial/BusquedaAEstrella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/ia_parcial/BusquedaAEstrella.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/edu/ia_parcial/EstadoMonedas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/ia_parcial/EstadoMonedas.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,10 +114,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.PruebaAEstrella" />
-        <item itemvalue="Application.PruebaBFH" />
-        <item itemvalue="Application.PruebaCostoUniforme" />
         <item itemvalue="Application.PruebaDFS" />
         <item itemvalue="Application.PruebaBFS" />
+        <item itemvalue="Application.PruebaBFH" />
+        <item itemvalue="Application.PruebaCostoUniforme" />
       </list>
     </recent_temporary>
   </component>
@@ -135,7 +136,7 @@
       <workItem from="1572467545045" duration="175000" />
       <workItem from="1572804510722" duration="1130000" />
       <workItem from="1572825989281" duration="4072000" />
-      <workItem from="1572876605270" duration="5291000" />
+      <workItem from="1572876605270" duration="8236000" />
     </task>
     <servers />
   </component>
