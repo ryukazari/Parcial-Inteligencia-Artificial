@@ -8,16 +8,15 @@ public class EstadoMonedas implements Estado {
     private int heuristica = 0;
     private int costo;
     private char[] posicionActual;
+    private final int CANTIDAD = 5;
 
     public EstadoMonedas(char[] posiciones){
         posicionActual = posiciones;
         setHeuristica();
     }
 
-    public EstadoMonedas(char[] posiciones, int costo){
-        this.posicionActual = posiciones;
-        this.costo = costo;
-        setHeuristica();
+    public int determinarCosto() {
+        return 1;
     }
 
     private void setHeuristica(){
@@ -36,10 +35,12 @@ public class EstadoMonedas implements Estado {
         return heuristica;
     }
 
-    @Override
-    public boolean esMeta() {
-        if (Arrays.equals(posicionActual, META)) return true;
-        return false;
+    private char[] copiarPosiciones(char[] estado){
+        char[] resultado = new char[CANTIDAD];
+        for (int i = 0; i < CANTIDAD; i++){
+            resultado[i] = estado[i];
+        }
+        return resultado;
     }
 
     @Override
@@ -51,55 +52,53 @@ public class EstadoMonedas implements Estado {
         return sucesores;
     }
 
+    @Override
+    public boolean esMeta() {
+        if (Arrays.equals(posicionActual, META)) return true;
+        return false;
+    }
+
+
     private void girar(ArrayList<Estado> s){
         char[] temp;
-        for (int i=0; i<4; i++){
+        boolean flag = false;
+        for (int i=0; i<5; i++){
             temp = copiarPosiciones(posicionActual);
             if(temp[i]=='R'){
                 temp[i]='A';
-                s.add(new EstadoMonedas(temp,1));
-            }else if(temp[i]=='A'){
-                temp[i]='R';
-                s.add(new EstadoMonedas(temp,1));
+                s.add(new EstadoMonedas(temp));
+                flag = true;
             }
+            if(temp[i]=='A' && !flag){
+                temp[i]='R';
+                s.add(new EstadoMonedas(temp));
+            }
+            flag = false;
         }
-
     }
-
-    /*
-    private void girar(int index, ArrayList<Estado> s){
-        char[] temp = copiarPosiciones(posicionActual);
-        if(temp[index]=='R'){
-            temp[index]='A';
-        }else if(temp[index]=='A'){
-            temp[index]='R';
-        }
-        s.add(new EstadoMonedas(temp,1));
-    }
-    */
 
     private void desplazar(ArrayList<Estado> s){
         char[] tempIzq = copiarPosiciones(posicionActual);
         char[] tempDer = copiarPosiciones(posicionActual);
         int indice = -1;
-        for (int i=0; i<tempIzq.length; i++){
+        for (int i=0; i<5; i++){
             if(tempIzq[i] == '_') indice = i;
         }
         if(indice == 0){
             tempDer[indice] = tempDer[indice+1];
             tempDer[indice+1] = '_';
-            s.add(new EstadoMonedas(tempDer,1));
+            s.add(new EstadoMonedas(tempDer));
         }else if (indice == 4){
             tempIzq[indice] = tempIzq[indice-1];
             tempIzq[indice-1] = '_';
-            s.add(new EstadoMonedas(tempIzq,1));
+            s.add(new EstadoMonedas(tempIzq));
         }else{
             tempIzq[indice] = tempIzq[indice-1];
             tempIzq[indice-1] = '_';
-            s.add(new EstadoMonedas(tempIzq,1));
+            s.add(new EstadoMonedas(tempIzq));
             tempDer[indice] = tempDer[indice+1];
             tempDer[indice+1] = '_';
-            s.add(new EstadoMonedas(tempDer,1));
+            s.add(new EstadoMonedas(tempDer));
         }
 
     }
@@ -108,7 +107,7 @@ public class EstadoMonedas implements Estado {
         char[] tempIzq = copiarPosiciones(posicionActual);
         char[] tempDer = copiarPosiciones(posicionActual);
         int indice = -1;
-        for (int i=0; i<tempIzq.length; i++){
+        for (int i=0; i<5; i++){
             if(tempIzq[i] == '_') indice = i;
         }
         if(indice == 0 || indice == 1){
@@ -116,33 +115,30 @@ public class EstadoMonedas implements Estado {
             else tempDer[indice+2]='R';
             tempDer[indice] = tempDer[indice+2];
             tempDer[indice+2] = '_';
-            s.add(new EstadoMonedas(tempDer,2));
+            s.add(new EstadoMonedas(tempDer));
         }
         if(indice == 4 || indice == 3){
             if(tempDer[indice-2]=='R') tempDer[indice-2]='A';
             else tempDer[indice-2]='R';
             tempDer[indice] = tempDer[indice-2];
             tempDer[indice-2] = '_';
-            s.add(new EstadoMonedas(tempDer,2));
+            s.add(new EstadoMonedas(tempDer));
         }
         if(indice == 2){
             if(tempIzq[indice-2]=='R') tempIzq[indice-2]='A';
             else tempIzq[indice-2]='R';
             tempIzq[indice] = tempIzq[indice-2];
             tempIzq[indice-2] = '_';
-            s.add(new EstadoMonedas(tempIzq,2));
+            s.add(new EstadoMonedas(tempIzq));
 
             if(tempDer[indice+2]=='R') tempDer[indice+2]='A';
             else tempDer[indice+2]='R';
             tempDer[indice] = tempDer[indice+2];
             tempDer[indice+2] = '_';
-            s.add(new EstadoMonedas(tempDer,2));
+            s.add(new EstadoMonedas(tempDer));
         }
     }
 
-    public int determinarCosto() {
-        return this.costo;
-    }
 
     public void setCosto(int costo) {
 
@@ -170,14 +166,6 @@ public class EstadoMonedas implements Estado {
 
     }
 
-
-    private char[] copiarPosiciones(char[] estado){
-        char[] resultado = new char[META.length];
-        for (int i = 0; i < META.length; i++){
-            resultado[i] = estado[i];
-        }
-        return resultado;
-    }
 
     public double costoCambioEstado(EstadoMonedas otro){
         int blanco=0;
