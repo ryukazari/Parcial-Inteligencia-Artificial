@@ -32,13 +32,33 @@ En base a este problema a acontinuación se proponen varias preguntas de búsque
 
 ¿Cuál sería el orden en el que salen los nodos de la cola en búsqueda primero en amplitud (BFS)? Implementación: La alternativa es una cola FIFO y los nuevos sucesores (en orden) se van al final de la cola. Muestre los 10 primeros nodos que salen de la cola.
 
+Solución: `ARAR_ | RRAR_ | AAAR_ | ARRR_ | ARAA_ | ARA_R | AR_RR | RAAR_ | RRRR_ | RRAA_ `
+
 
 ## Pregunta 2
 
 ¿Cuál sería el orden en el que salen los nodos de la cola en búsqueda primero en profundidad (DFS)? Implementación: La alternativa es una cola FIFO y los nuevos sucesores (en orden) se van al inicio de la cola. Muestre los 5 primeros nodos que salen de la cola.
 
+Solución: `ARAR_ | RRAR_ | RAAR_ | AAAR_ | AARR_ `
+
 
 ## Pregunta 3
 
 ¿Cuál sería el orden en el que salen los nodos de la cola con la búsqueda de costo uniforme? Muestre los 5 primeros nodos que se expanden.
+
+Solución: `ARAR_ | RRAR_ | AAAR_ | ARRR_ | ARAA_ `
+
+
+## Pregunta 4
+
+¿Cuál sería la solución con el algoritmo primero el mejor considerando la heurística? Muestre el orden de expansión de los nodos.
+
+Solución: `ARAR_ | AR_RR | _RRRR | _RARR | _RARA`
+
+
+## Pregunta 5
+
+Según lo sugerido como heurística ¿En qué orden se expanden los nodos en la búsqueda A*? Muestre los 5 primeros nodos que se expanden.
+
+Solución: `ARAR_ | RRAR_ | ARA_R | AR_RR | _RRRR`
 
