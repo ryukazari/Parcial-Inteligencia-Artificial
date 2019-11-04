@@ -3,21 +3,25 @@ package edu.ia_parcial;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class BusquedaCostoUniforme
+/**
+ * Define una búsqueda BFS en un puzle validado.
+ */
+public class BusquedaAEstrella
 {
     /**
-     * FunciÃ³n de inicializaciÃ³n para bÃºsqueda BFS en un puzle 8.
+     * Función de inicialización para búsqueda BFS en un puzle 8.
      *
-     * @param ubicacion
+     * @param tablero
      *            - El estado inicial, representado como un arreglo lineal
+     *              de longitud 9 formando 3 meta-filas.
      * @param d
-     *            true para mostrar nodos examinados  
+     *            true para mostrar nodos examinados
      */
-    public static void buscar(char[] ubicacion, boolean d)
+    public static void buscar(char[] tablero, boolean d)
     {
-        NodoDeBusqueda raiz = new NodoDeBusqueda(new EstadoMonedas(ubicacion));
+        NodoDeBusquedaF raiz = new NodoDeBusquedaF(new EstadoMonedas(tablero));
 
-        ListaOrdenadaSE<NodoDeBusqueda> cola = new ListaOrdenadaSE<NodoDeBusqueda>();
+        ListaOrdenadaSE<NodoDeBusquedaF> cola = new ListaOrdenadaSE<NodoDeBusquedaF>();
 
         cola.insertar(raiz);
 
@@ -25,13 +29,13 @@ public class BusquedaCostoUniforme
     }
 
     /*
-     * MÃ©todo de ayuda para revisar si un NodoDeBusqueda ya fue evaluado.
-     * Devuelve true si es asÃ­, false en caso contrario.
+     * Método de ayuda para revisar si un NodoDeBusqueda ya fue evaluado.
+     * Devuelve true si es así, false en caso contrario.
      */
-    private static boolean revisarRepetidos(NodoDeBusqueda n)
+    private static boolean revisarRepetidos(NodoDeBusquedaF n)
     {
         boolean resultado = false;
-        NodoDeBusqueda nodoARevisar = n;
+        NodoDeBusquedaF nodoARevisar = n;
 
         // Mientras el padre de n no sea null, revisar si este es igual
         // al nodo que estamos buscando.
@@ -50,20 +54,20 @@ public class BusquedaCostoUniforme
     /**
      * Realiza una busqueda BFS usando cola como el espacio a buscar
      *
-     * @param lista
+     * @param cola
      *            - La cola NodoDeBusqueda a ser buscada.
      * @param d
      *            true para mostrar nodos examinados
      */
-    public static void realizarBusqueda( ListaOrdenadaSE<NodoDeBusqueda> lista, boolean d)
+    public static void realizarBusqueda( ListaOrdenadaSE<NodoDeBusquedaF> cola, boolean d)
     {
-        int contBusqueda = 1; // contador para el nÃºmero de iteraciones
+        int contBusqueda = 1; // contador para el número de iteraciones
 
-        while (!lista.estaVacia()) // mientras la cola no este vacÃ­a
+        while (!cola.estaVacia()) // mientras la cola no este vacía
         {
-            System.out.print("Sale de Lista Ordenada:");
-            NodoDeBusqueda nodoTemp = (NodoDeBusqueda) lista.eliminarAlInicio();
-            System.out.print(" (costo = " + nodoTemp.getCosto()+", heuristica = " + nodoTemp.getCostoHeu()+")  " );
+            System.out.print("Sale de Cola:");
+            NodoDeBusquedaF nodoTemp = (NodoDeBusquedaF) cola.eliminarAlInicio();
+            System.out.print("( f = " + nodoTemp.getCostoF()+")  " );
             nodoTemp.getEstadoActual().mostrarEstado();
 
             if (!nodoTemp.getEstadoActual().esMeta()) // si nodoTemp no es una meta
@@ -78,16 +82,18 @@ public class BusquedaCostoUniforme
                  */
                 for (int i = 0; i < sucesoresTemp.size(); i++)
                 {
-                    // el segundo parametro aquÃ­ agrega el costo del nuevo
+                    // el segundo parametro aquí agrega el costo del nuevo
                     // nodo al costo actual total en el NodoDeBusqueda
-                    NodoDeBusqueda nuevoNodo = new NodoDeBusqueda(nodoTemp,
-                                                sucesoresTemp.get(i),
-                                                nodoTemp.getCosto()+((EstadoMonedas)nodoTemp.getEstadoActual()).costoCambioEstado((EstadoMonedas) sucesoresTemp.get(i)),
-                                                 ((EstadoMonedas)sucesoresTemp.get(i)).getHeuristica());
+                    NodoDeBusquedaF nuevoNodo = new NodoDeBusquedaF(nodoTemp,
+                            sucesoresTemp.get(i),
+                            nodoTemp.getCosto()+
+                                    ((EstadoMonedas)nodoTemp.getEstadoActual()).
+                                            costoCambioEstado((EstadoMonedas)sucesoresTemp.get(i)),
+                            ((EstadoMonedas)sucesoresTemp.get(i)).getHeuristica());
 
                     if (!revisarRepetidos(nuevoNodo))
                     {
-                        lista.insertar(nuevoNodo);
+                        cola.insertar(nuevoNodo);
                     }
                 }
                 contBusqueda++;
@@ -98,7 +104,7 @@ public class BusquedaCostoUniforme
             {
                 // Use una pila para rastrear el camino desde el estado inicial
                 // hasta el estado meta.
-                Stack<NodoDeBusqueda> caminoSolucion = new Stack<NodoDeBusqueda>();
+                Stack<NodoDeBusquedaF> caminoSolucion = new Stack<NodoDeBusquedaF>();
                 caminoSolucion.push(nodoTemp);
                 nodoTemp = nodoTemp.getPadre();
 
@@ -109,7 +115,7 @@ public class BusquedaCostoUniforme
                 }
                 caminoSolucion.push(nodoTemp);
 
-                // El tamaÃ±o de la pila antes de vaciarla.
+                // El tamaño de la pila antes de vaciarla.
                 int iteraciones = caminoSolucion.size();
 
                 for (int i = 0; i < iteraciones; i++)
@@ -122,7 +128,7 @@ public class BusquedaCostoUniforme
                 System.out.println("El costo fue: " + nodoTemp.getCosto());
                 if (d)
                 {
-                    System.out.println("NÃºmero de nodos examinados: "
+                    System.out.println("Número de nodos examinados: "
                             + contBusqueda);
                 }
 
@@ -130,10 +136,11 @@ public class BusquedaCostoUniforme
             }
         }
 
-        // Esto no deberÃ­a ocurrir.
-        System.out.println("!Error! No se encontrÃ³ una soluciÃ³n!");
+        // Esto no debería ocurrir.
+        System.out.println("!Error! No se encontró una solución!");
     }
 
 
 }
+
 

@@ -24,7 +24,7 @@ public class EstadoMonedas implements Estado {
         int contadorHeuristica=0;
         int blanco=0;
         int blanco2=0;
-        for (int i=0; i<4; i++){
+        for (int i=0; i<5; i++){
             if(posicionActual[i]!=META[i]) contadorHeuristica++;
             if(posicionActual[i]=='_') blanco = i;
             if(META[i]=='_') blanco2=i;
@@ -180,7 +180,6 @@ public class EstadoMonedas implements Estado {
     }
 
     public double costoCambioEstado(EstadoMonedas otro){
-        int distancia=0;
         int blanco=0;
         int blanco2=0;
         boolean iguales = true;
